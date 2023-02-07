@@ -1,6 +1,10 @@
 
 import styled from 'styled-components'
 
+interface ITitleContainerProps{
+  lineColor: string
+}
+
 export const Container = styled.div`
  width: 100%;
  display: flex;
@@ -10,7 +14,7 @@ export const Container = styled.div`
 
   
 `
-export const TitleContainer = styled.div`
+export const TitleContainer = styled.div<ITitleContainerProps>`
  color: ${props => props.theme.color.white};
  
 
@@ -21,7 +25,7 @@ export const TitleContainer = styled.div`
       content: '';
       display: block;
       width: 55px;
-      border-bottom: 10px solid ${props=>props.theme.color.warning};
+      border-bottom: 10px solid ${props=>props.lineColor};
     }
   }
  
@@ -30,7 +34,7 @@ export const TitleContainer = styled.div`
 export const Controllers = styled.div`
  display: flex;
  
- button{
-  margin-left: 16px;
- }
+  select{
+    margin-left:8px;
+  }
 `

@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components'
 import dark from './styles/themes/dark'
 import ligth from './styles/themes/ligth'
 import Dashboard from './pages/Dashboard/Dashboard'
+import List from './pages/List/List'
 
 
 
@@ -14,7 +15,7 @@ const App = () => {
        <GlobalStyles/>
 
        <Layout>
-        <Dashboard/>
+        <List/>
         </Layout>  
 
     </ThemeProvider>
