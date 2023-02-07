@@ -1,8 +1,12 @@
 import React from 'react'
+import ContentHeader from '../../components/ContentHeader/ContentHeader'
+import { Container } from './style'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <Container>
+      <ContentHeader/>
+    </Container>
   )
 }
 

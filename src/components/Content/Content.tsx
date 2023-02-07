@@ -1,10 +1,13 @@
+import React from 'react'
+import { PropsChildren } from '../../Types/types'
 import { Container } from './styles'
 
 
-const Content = () => {
+
+const Content: React.FC<PropsChildren> = ({children}) => {
   return (
     <Container>
-      <h1>Content</h1>
+     {children}
     </Container>
   )
 }
