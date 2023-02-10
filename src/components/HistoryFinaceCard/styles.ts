@@ -28,7 +28,12 @@ export const Container = styled.li`
       flex-direction: column;
       justify-content: space-between;
       padding-left:10px;
+
+      span {
+      font-weight: 600;
+      font-size: 20px;
     }
+    }   
 
 
 `
