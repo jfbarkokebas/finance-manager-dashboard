@@ -9,6 +9,8 @@ import months from '../../repositories/months'
 import years from '../../repositories/years'
 import gains from '../../repositories/gains'
 import expenses from '../../repositories/expenses'
+import formatCurrency from '../../utils/formatCurrency'
+import formateDate from '../../utils/formateDate'
 
 
 const List = () => {
@@ -60,8 +62,8 @@ const List = () => {
           key={String(Date.now() * Math.random())}
           tagColor= {c.frequency === 'recorrente' ? '#E44C4E' : '#4E41F0'}
           title= {c.description}
-          subtitle={c.date}
-          amount={c.amount}
+          subtitle={formateDate(c.date)}
+          amount={formatCurrency(Number(c.amount))}
           />
 
         ))}
