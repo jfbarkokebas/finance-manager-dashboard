@@ -7,7 +7,7 @@ const formateDate =(date:string): string=>{
     ? dateDate.getDate() +1 : `0${dateDate.getDate() +1}`
 
   const month = dateDate.getMonth() + 1 > 9 
-  ? dateDate.getMonth() +1 : `0${dateDate.getMonth() +1}`
+    ? dateDate.getMonth() +1 : `0${dateDate.getMonth() +1}`
 
   return `${day}/${month}/${year}`
 }

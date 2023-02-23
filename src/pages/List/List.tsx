@@ -1,21 +1,27 @@
-import { useMemo} from 'react'
+import { useMemo, useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
+import { Container, Content, Filters } from './styles'
+//components
 import ContentHeader from '../../components/ContentHeader/ContentHeader'
 import HistoryFinanceCard from '../../components/HistoryFinaceCard/HistoryFinanceCard'
 import SelectInput from '../../components/SelectInput/SelectInput'
-import { Container, Content, Filters } from './styles'
-
+//repositórios
 import months from '../../repositories/months'
 import years from '../../repositories/years'
 import gains from '../../repositories/gains'
 import expenses from '../../repositories/expenses'
+//utils
 import formatCurrency from '../../utils/formatCurrency'
 import formateDate from '../../utils/formateDate'
 
 
 const List = () => {
    
-  const params = useParams()  
+  const params = useParams() 
+  const [monthSelected, setMonthSelected] = useState<string>(String(new Date().getMonth() +1)) 
+  const [yearSelected, setYearSelected] = useState<string>(String(new Date().getFullYear())) 
+  const [filteredRepo, setFilteredRepo] = useState<string[] >([])
+  
 
   const contentParams = useMemo(()=>{
     return params.type === 'entries-balance'? 
@@ -31,17 +37,20 @@ const List = () => {
   },[params.type]) 
 
 
-  
-  
-
   return (
     <Container>
       <ContentHeader title={contentParams.title }  lineColor={contentParams.lineColor}>
-        <SelectInput options={months}/>
-        <SelectInput options={years}/>
+        <SelectInput 
+        options={months} 
+        onChange ={ e=>{setMonthSelected(e.target.value)}}
+        defaultValue={monthSelected}/>
+        <SelectInput 
+        options ={years}
+        onChange ={ e=>{setYearSelected(e.target.value)}}
+        defaultValue={yearSelected}/>
       </ContentHeader>
 
-      <Filters>
+      <Filters >
         <button 
         type="button"
         className='tag-filter filter-recurrent'>
@@ -56,7 +65,15 @@ const List = () => {
       </Filters>
 
       <Content>
-        {contentParams.repo.map((c)=>(
+        {contentParams.repo
+          .filter(item =>{
+            const date = new Date(item.date)
+            const month = String(date.getMonth() + 1)
+            const year = String(date.getFullYear())
+        
+            return month === monthSelected && year === yearSelected
+          })
+          .map((c)=>(
 
           <HistoryFinanceCard
           key={String(Date.now() * Math.random())}
